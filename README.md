@@ -39,3 +39,7 @@ EcoCycle-Project-FRONTEND/
 │   ├── index.css       # Global styles
 │   └── components/     # UI components
 └── README.md           # Project docs
+
+## how to run
+npm install
+npm run dev
