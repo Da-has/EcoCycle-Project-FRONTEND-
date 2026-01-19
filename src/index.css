@@ -6,13 +6,16 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* ===== Global ===== */
 body {
-  background-color: #358951;
+  background: 
+    linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
+    url('https://images.unsplash.com/photo-1534709153997-d6659469f951?w=1000&auto=format&fit=crop&q=80') 
+    no-repeat center center fixed;
+  background-size: cover;
+  min-height: 100vh;
   color: #1f2937;
 }
 
-/* ===== Layout ===== */
 .page {
   padding: 24px 32px;
 }
@@ -26,9 +29,8 @@ body {
   gap: 24px;
 }
 
-/* ===== Navbar ===== */
 .navbar {
-  background-color: #ffffff;
+  background-color: #eeedc1;
   border-bottom: 1px solid #e5e7eb;
   padding: 16px 32px;
   display: flex;
@@ -59,7 +61,7 @@ body {
 
 /* ===== Cards ===== */
 .card {
-  background-color: #ffffff;
+  background-color: #ededb4;
   border: 1px solid #e5e7eb;
   border-radius: 10px;
   padding: 24px;
@@ -209,7 +211,7 @@ body {
 
 /* Records */
 .waste-record {
-  border: 1px solid #e5e7eb;
+  border: 1px solid #e1e4e8;
   border-radius: 8px;
   padding: 16px;
   margin-bottom: 14px;
@@ -304,7 +306,7 @@ body {
 }
 
 .image-card {
-  background-color: #ffffff;
+  background-color: #faf8f8;
   border: 1px solid #e5e7eb;
   border-radius: 12px;
   overflow: hidden;
