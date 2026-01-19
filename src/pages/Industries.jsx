@@ -1,21 +1,44 @@
+import { useState, useEffect } from "react";
 import IndustryForm from "../components/IndustryForm";
 
-const industries = [
-  {
-    name: "Manufacturing Corp",
-    code: "MFG-001",
-    desc: "Manufacturing plant",
-    date: "1/15/2024",
-  },
-  {
-    name: "Chemical Plants Ltd",
-    code: "CHM-002",
-    desc: "Chemical processing",
-    date: "1/20/2024",
-  },
-];
+const BASE_API_URL = "http://127.0.0.1:5555/api";
 
 export default function Industries() {
+  const [industries, setIndustries] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  const fetchIndustries = async () => {
+    try {
+      const res = await fetch(`${BASE_API_URL}/industries`);
+      const data = await res.json();
+      setIndustries(data);
+      setLoading(false);
+    } catch (err) {
+      console.error("Error fetching industries:", err);
+    }
+  };
+
+  useEffect(() => {
+    fetchIndustries();
+  }, []);
+
+  const handleAddIndustry = (newIndustry) => {
+    setIndustries((prev) => [...prev, newIndustry]);
+  };
+
+  const handleDeleteIndustry = async (id) => {
+    try {
+      const res = await fetch(`${BASE_API_URL}/industries/${id}`, {
+        method: "DELETE",
+      });
+      if (res.ok) {
+        setIndustries((prev) => prev.filter((i) => i.id !== id));
+      }
+    } catch (err) {
+      console.error("Error deleting industry:", err);
+    }
+  };
+
   return (
     <div className="page">
       <div className="card section">
@@ -24,21 +47,33 @@ export default function Industries() {
       </div>
 
       <div className="flex-row">
-        <IndustryForm />
+
+        <IndustryForm onSuccess={handleAddIndustry} />
 
         <div className="card" style={{ flex: 2 }}>
           <h2 className="card-title">Registered Industries</h2>
 
-          {industries.map((i, idx) => (
-            <div key={idx} className="list-item">
-              <div>
-                <strong>{i.name}</strong>
-                <span className="badge">{i.code}</span>
-                <p className="muted">{i.desc}</p>
+          {loading ? (
+            <p>Loading industries...</p>
+          ) : industries.length === 0 ? (
+            <p>No industries registered yet.</p>
+          ) : (
+            industries.map((i) => (
+              <div key={i.id} className="list-item">
+                <div>
+                  <strong>{i.name}</strong>
+                  <span className="badge">{i.industry_code}</span>
+                  <p className="muted">{i.description}</p>
+                </div>
+                <button
+                  className="btn btn-red"
+                  onClick={() => handleDeleteIndustry(i.id)}
+                >
+                  Delete
+                </button>
               </div>
-              <p className="muted">{i.date}</p>
-            </div>
-          ))}
+            ))
+          )}
         </div>
       </div>
     </div>

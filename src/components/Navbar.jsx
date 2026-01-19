@@ -23,6 +23,7 @@ export default function Navbar() {
         </NavLink>
         <NavLink
           to="/wastes"
+          
           className={({ isActive }) =>
             isActive ? "nav-link nav-link-active" : "nav-link"
           }
