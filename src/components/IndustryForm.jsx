@@ -1,5 +1,4 @@
-IndustryForm.jsx
-export default function IndustryForm() {
+expor.t default function IndustryForm() {
   return (
     <div className="card" style={{ flex: 1 }}>
       <h2 className="font-semibold text-lg">Add New Industry</h2>
